@@ -1,25 +1,35 @@
 #include "registro.h"
 
-#include <stdexcept>
+#include <algorithm>
 
 #include "excepciones.h"
 
 // Responsable: Gabriel
-// TODO: implementar agregar, buscar y eliminar.
-//   - agregar: si ya existe un alumno con el mismo código -> throw AlumnoDuplicadoException(codigo)
-//   - buscar / eliminar: si no existe -> throw AlumnoNoEncontradoException(codigo)
-// Sugerencia: usar std::find_if de <algorithm> para buscar por código.
-
-void RegistroAlumnos::agregar([[maybe_unused]] const Alumno& alumno) {
-    throw std::logic_error("Pendiente de implementar: RegistroAlumnos::agregar");
+void RegistroAlumnos::agregar(const Alumno& alumno) {
+    const auto encontrado = std::find_if(alumnos_.begin(), alumnos_.end(),
+        [&](const Alumno& a) { return a.codigo == alumno.codigo; });
+    if (encontrado != alumnos_.end()) {
+        throw AlumnoDuplicadoException(alumno.codigo);
+    }
+    alumnos_.push_back(alumno);
 }
 
-const Alumno& RegistroAlumnos::buscar([[maybe_unused]] const std::string& codigo) const {
-    throw std::logic_error("Pendiente de implementar: RegistroAlumnos::buscar");
+const Alumno& RegistroAlumnos::buscar(const std::string& codigo) const {
+    const auto encontrado = std::find_if(alumnos_.begin(), alumnos_.end(),
+        [&](const Alumno& a) { return a.codigo == codigo; });
+    if (encontrado == alumnos_.end()) {
+        throw AlumnoNoEncontradoException(codigo);
+    }
+    return *encontrado;
 }
 
-void RegistroAlumnos::eliminar([[maybe_unused]] const std::string& codigo) {
-    throw std::logic_error("Pendiente de implementar: RegistroAlumnos::eliminar");
+void RegistroAlumnos::eliminar(const std::string& codigo) {
+    const auto encontrado = std::find_if(alumnos_.begin(), alumnos_.end(),
+        [&](const Alumno& a) { return a.codigo == codigo; });
+    if (encontrado == alumnos_.end()) {
+        throw AlumnoNoEncontradoException(codigo);
+    }
+    alumnos_.erase(encontrado);
 }
 
 const std::vector<Alumno>& RegistroAlumnos::listar() const { return alumnos_; }
