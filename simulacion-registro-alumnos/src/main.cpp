@@ -48,6 +48,8 @@ void mostrarAlumno(const Alumno& alumno) {
               << std::setw(6) << alumno.edad << std::fixed << std::setprecision(1) << alumno.nota << '\n';
 }
 
+// Cada dato se valida apenas se ingresa: si uno es inválido se lanza la excepción
+// y la operación se cancela sin registrar nada a medias.
 void registrar(RegistroAlumnos& registro) {
     Alumno alumno;
     alumno.codigo = validarCodigo(leerLinea("Código (8 dígitos): "));
@@ -58,6 +60,7 @@ void registrar(RegistroAlumnos& registro) {
     std::cout << "Alumno registrado.\n";
 }
 
+// buscar() lanza AlumnoNoEncontradoException si el código no existe.
 void buscar(const RegistroAlumnos& registro) {
     const Alumno& alumno = registro.buscar(validarCodigo(leerLinea("Código a buscar: ")));
     mostrarEncabezado();
@@ -80,6 +83,7 @@ void eliminar(RegistroAlumnos& registro) {
     std::cout << "Alumno eliminado.\n";
 }
 
+// guardarAlumnos() lanza RegistroException si no puede escribir el archivo.
 void guardar(const RegistroAlumnos& registro, const std::string& ruta) {
     guardarAlumnos(ruta, registro.listar());
     std::cout << "Datos guardados en " << ruta << ".\n";
@@ -131,6 +135,10 @@ int main(int argc, char* argv[]) {
         if (!std::getline(std::cin, opcion) || opcion == "0") {
             break;
         }
+        // Cada operación del menú se ejecuta dentro de un try: cualquier error se captura
+        // abajo y el bucle continúa, así el sistema nunca se detiene.
+        // Los catch van de la excepción más específica a la más general: si RegistroException
+        // fuera primero, también capturaría a sus clases hijas y no se distinguirían los casos.
         try {
             if (opcion == "1") {
                 registrar(registro);
