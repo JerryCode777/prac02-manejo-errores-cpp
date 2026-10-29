@@ -53,7 +53,7 @@ Cada archivo tiene un bloque `TODO` con las indicaciones exactas. **No modifique
 ### Checklist por integrante
 - [ ] **Elkin:** `dividir()` lanza `std::domain_error` si el divisor es 0 · `try/catch` con mensaje claro · mensaje de cierre siempre (RAII) · *(extra)* validar que el dato sea número.
 - [ ] **Fernando:** `leerLinea` (EOF) · `convertirEntero` (`std::invalid_argument`, `std::out_of_range`, rango) · `convertirNota` (0–20) · `validarCodigo` (8 dígitos) · `validarNombre`.
-- [ ] **Diego:** `cargarAlumnos` lanza `ArchivoNoEncontradoException` y `ArchivoCorruptoException` (con número de línea) · `guardarAlumnos` lanza `RegistroException` si no puede escribir.
+- [x] **Diego:** `cargarAlumnos` lanza `ArchivoNoEncontradoException` y `ArchivoCorruptoException` (con número de línea) · `guardarAlumnos` lanza `RegistroException` si no puede escribir.
 - [ ] **Gabriel:** mensajes de las 6 excepciones · `agregar` (duplicado) · `buscar` y `eliminar` (no encontrado).
 - [ ] **Todos:** al terminar, tomar **capturas** de las pruebas de su parte (caso correcto y caso con error) y subirlas a `docs/capturas/` con el nombre `<parte>-<caso>.png`, por ejemplo `practica1-division-cero.png`.
 
