@@ -179,8 +179,8 @@ Luego abran un **Pull Request** hacia `main` en GitHub. Antes de abrirlo, verifi
 ## Integrantes
 | Apellidos y nombres | Usuario GitHub |
 |---------------------|----------------|
-| [COMPLETAR] Elkin | elkinramos8 |
-| [COMPLETAR] Fernando | Fernando-Solsol |
-| [COMPLETAR] Diego | Diego-Schreiber |
-| Quispe Mamani Jose Gabriel | J-Gabriel-Quispe-M |
 | Huaynacho Mango Jerry Anderson | JerryCode777 |
+| Quispe Mamani Jose Gabriel | J-Gabriel-Quispe-M |
+| Ramos Ochochoque Elkin Eder B. | elkinramos8 |
+| Schreiber Landeo Diego Hans | Diego-Schreiber |
+| Solsol Choque Fernando Rafael | Fernando-Solsol |
