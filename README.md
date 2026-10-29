@@ -55,7 +55,7 @@ Cada archivo tiene un bloque `TODO` con las indicaciones exactas. **No modifique
 - [ ] **Fernando:** `leerLinea` (EOF) · `convertirEntero` (`std::invalid_argument`, `std::out_of_range`, rango) · `convertirNota` (0–20) · `validarCodigo` (8 dígitos) · `validarNombre`.
 - [ ] **Diego:** `cargarAlumnos` lanza `ArchivoNoEncontradoException` y `ArchivoCorruptoException` (con número de línea) · `guardarAlumnos` lanza `RegistroException` si no puede escribir.
 - [ ] **Gabriel:** mensajes de las 6 excepciones · `agregar` (duplicado) · `buscar` y `eliminar` (no encontrado).
-- [ ] **Todos:** al terminar, tomar **capturas** de las pruebas de su parte (caso correcto y caso con error) y subirlas a `docs/capturas/` con el nombre `<parte>-<caso>.png`, por ejemplo `practica1-division-cero.png`.
+- [ ] **Todos:** verificar que la salida de su parte coincida con el **resultado esperado** de [`docs/pruebas.md`](docs/pruebas.md). No hace falta tomar capturas: ya están en el informe.
 
 ## Estructura del repositorio
 
@@ -81,8 +81,7 @@ prac02-manejo-errores-cpp/
 │       └── alumnos_corrupto.csv   Archivo dañado para pruebas
 ├── docs/
 │   ├── errores.md                 Catálogo de errores y su manejo
-│   ├── pruebas.md                 Casos de prueba
-│   └── capturas/                  Evidencias de ejecución
+│   └── pruebas.md                 Casos de prueba
 ├── informe/                       Informe en formato APA (.docx)
 └── Makefile
 ```
@@ -173,7 +172,7 @@ Luego abran un **Pull Request** hacia `main` en GitHub. Antes de abrirlo, verifi
 ## Entrega
 - Código completo en `main`.
 - Catálogo de errores: [`docs/errores.md`](docs/errores.md).
-- Casos de prueba y capturas: [`docs/pruebas.md`](docs/pruebas.md), [`docs/capturas/`](docs/capturas/).
+- Casos de prueba: [`docs/pruebas.md`](docs/pruebas.md).
 - Informe en formato APA: [`informe/`](informe/).
 
 ## Integrantes
