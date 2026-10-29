@@ -86,4 +86,9 @@ std::string validarNombre(const std::string& texto) {
         unsigned char uc = static_cast<unsigned char>(c);
         // Se permiten letras ASCII, espacios y bytes multibyte (>= 128) para soportar UTF-8 (tildes, ñ, Ñ)
         if (!std::isalpha(uc) && !std::isspace(uc) && uc < 128) {
-            throw EntradaInvalidaException("nombre
+            throw EntradaInvalidaException("nombre", "El nombre solo puede contener letras y espacios.");
+        }
+    }
+
+    return texto;
+}

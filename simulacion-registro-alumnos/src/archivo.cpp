@@ -42,14 +42,13 @@ std::vector<Alumno> cargarAlumnos(const std::string& ruta) {
 
         try {
             // Validar cada campo usando las funciones de entrada.h.
-            // Nota: Si las funciones de tu 'entrada.h' tienen nombres diferentes, 
-            // asegúrate de adaptarlos aquí (por ejemplo: validarCodigo, validarEdad, etc.).
-            auto codigo = validarCodigo(campos[0]);
-            auto nombre = validarNombre(campos[1]);
-            auto edad = validarEdad(campos[2]);
-            auto nota = validarNota(campos[3]);
+            Alumno alumno;
+            alumno.codigo = validarCodigo(campos[0]);
+            alumno.nombre = validarNombre(campos[1]);
+            alumno.edad = convertirEntero(campos[2], "edad", 15, 99);
+            alumno.nota = convertirNota(campos[3]);
 
-            alumnos.emplace_back(codigo, nombre, edad, nota);
+            alumnos.push_back(alumno);
 
         } catch (const EntradaInvalidaException& e) {
             throw ArchivoCorruptoException(ruta, numeroLinea, e.what());
@@ -67,11 +66,9 @@ void guardarAlumnos(const std::string& ruta, const std::vector<Alumno>& alumnos)
 
     for (const auto& alumno : alumnos) {
         // Escribe en formato: codigo;nombre;edad;nota
-        // Nota: Si tu clase Alumno usa atributos públicos en lugar de getters, 
-        // cambia getCodigo() por .codigo, getNombre() por .nombre, etc.
-        archivo << alumno.getCodigo() << ";"
-                << alumno.getNombre() << ";"
-                << alumno.getEdad() << ";"
-                << alumno.getNota() << "\n";
+        archivo << alumno.codigo << ";"
+                << alumno.nombre << ";"
+                << alumno.edad << ";"
+                << alumno.nota << "\n";
     }
 }
