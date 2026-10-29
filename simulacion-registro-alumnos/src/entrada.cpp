@@ -34,7 +34,7 @@ int convertirEntero(const std::string& texto, const std::string& campo, int min,
     }
 
     if (valor < min || valor > max) {
-        throw EntradaInvalidaException(campo, "El valor debe estar entre " + std::to_string(min) + " y " + std::to_string(max) + "");
+        throw EntradaInvalidaException(campo, "El valor debe estar entre " + std::to_string(min) + " y " + std::to_string(max));
     }
 
     return valor;
