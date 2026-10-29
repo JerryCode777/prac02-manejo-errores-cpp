@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Curso** | Tecnología de Objetos |
-| **Docente** | [COMPLETAR] |
+| **Docente** | Mg. Maribel Molina Barriga |
 | **Lenguaje** | C++17 |
 | **Entregables** | Práctica 1 (División segura) · Simulación de sistema (todos los grupos) · Informe APA |
 

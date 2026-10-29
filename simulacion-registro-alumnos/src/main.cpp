@@ -26,13 +26,25 @@ void registrarError(const std::string& mensaje) {
     log << std::put_time(std::localtime(&ahora), "%Y-%m-%d %H:%M:%S") << " | " << mensaje << '\n';
 }
 
+// Completa con espacios hasta `ancho` caracteres. std::setw cuenta bytes, y en UTF-8
+// las letras con tilde ocupan 2, por eso se cuentan solo los bytes que inician un carácter.
+std::string rellenar(const std::string& texto, std::size_t ancho) {
+    std::size_t caracteres = 0;
+    for (unsigned char c : texto) {
+        if ((c & 0xC0) != 0x80) {
+            ++caracteres;
+        }
+    }
+    return caracteres >= ancho ? texto + " " : texto + std::string(ancho - caracteres, ' ');
+}
+
 void mostrarEncabezado() {
     std::cout << std::left << std::setw(10) << "CODIGO" << std::setw(30) << "NOMBRE"
               << std::setw(6) << "EDAD" << "NOTA\n";
 }
 
 void mostrarAlumno(const Alumno& alumno) {
-    std::cout << std::left << std::setw(10) << alumno.codigo << std::setw(30) << alumno.nombre
+    std::cout << std::left << std::setw(10) << alumno.codigo << rellenar(alumno.nombre, 30)
               << std::setw(6) << alumno.edad << std::fixed << std::setprecision(1) << alumno.nota << '\n';
 }
 
