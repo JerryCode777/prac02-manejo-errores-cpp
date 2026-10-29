@@ -1,31 +1,43 @@
 // Práctica 1: División segura
-// Responsable: Elkin
-//
-// Objetivo: evitar que el programa se detenga por división por cero.
-// Indicaciones:
-//   1. Pedir dos números al usuario.
-//   2. Manejar el error de división por cero mostrando un mensaje adecuado.
-//   3. Mostrar un mensaje de cierre equivalente a finally.
-//
-// Notas sobre C++:
-//   - Dividir entre cero NO lanza una excepción en C++ (con enteros es comportamiento
-//     indefinido y con double da inf). Hay que comprobar el divisor y lanzar la
-//     excepción con throw, por ejemplo std::domain_error.
-//   - C++ no tiene finally. Se simula con un objeto cuyo destructor muestra el mensaje
-//     de cierre (RAII): el destructor se ejecuta siempre al salir del bloque, haya o no
-//     excepción.
-//   - Extra opcional: validar que lo ingresado sea un número (std::cin.fail()).
-
 #include <iostream>
 #include <stdexcept>
+#include <string>
 
-// TODO: función dividir(a, b) que lance std::domain_error si b == 0.
+// Su destructor se ejecuta siempre al salir del bloque: cumple el papel de finally (RAII).
+struct MensajeCierre {
+    ~MensajeCierre() { std::cout << "Operación finalizada.\n"; }
+};
 
-// TODO: struct MensajeCierre cuyo destructor imprima "Operación finalizada."
+double dividir(double dividendo, double divisor) {
+    if (divisor == 0) {
+        throw std::domain_error("no se puede dividir entre cero");
+    }
+    return dividendo / divisor;
+}
+
+double leerNumero(const std::string& mensaje) {
+    std::cout << mensaje;
+    double valor;
+    if (!(std::cin >> valor)) {
+        throw std::invalid_argument("debe ingresar un número válido");
+    }
+    return valor;
+}
 
 int main() {
-    // TODO: pedir los dos números, llamar a dividir() dentro de try/catch
-    //       y mostrar el resultado o el mensaje de error.
-    std::cout << "Práctica 1: pendiente de implementar\n";
+    std::cout << "===== DIVISIÓN SEGURA =====\n";
+    {
+        MensajeCierre cierre;
+        try {
+            double dividendo = leerNumero("Ingrese el dividendo: ");
+            double divisor = leerNumero("Ingrese el divisor: ");
+            double resultado = dividir(dividendo, divisor);
+            std::cout << "Resultado: " << resultado << '\n';
+        } catch (const std::domain_error& e) {
+            std::cout << "Error: " << e.what() << ".\n";
+        } catch (const std::invalid_argument& e) {
+            std::cout << "Error: " << e.what() << ".\n";
+        }
+    }  // aquí se destruye `cierre` y se muestra el mensaje de cierre
     return 0;
 }
