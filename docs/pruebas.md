@@ -3,7 +3,7 @@
 Cada integrante ejecuta los casos de su parte y verifica que su salida coincida con el **resultado esperado**.
 
 | ID | Parte | Entrada | Resultado esperado | Resultado |
-|----|-------|---------|--------------------|-----------|---------|
+|----|-------|---------|--------------------|-----------|
 | P1-01 | Práctica 1 | 10 y 2 | `Resultado: 5` + `Operación finalizada.` | |
 | P1-02 | Práctica 1 | 10 y 0 | Mensaje de división por cero + `Operación finalizada.` | |
 | P1-03 | Práctica 1 *(extra)* | `abc` | `Debe ingresar un número válido.` | |
